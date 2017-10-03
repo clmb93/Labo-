@@ -50,6 +50,7 @@ camera.lookAt(scene.position);  // On indique à la camera de regarder la scene 
 
 
         var materiel = new THREE.MeshBasicMaterial({color : 0x5AA85E, wireframe : true}); 
+        
         var sphere_default = new THREE.Mesh(forme,materiel); // Création de l'objet sphere avec deux param , la forme et le materiel
 
 /* AJOUT DES SPHERES A LA SCENE */
@@ -59,8 +60,9 @@ scene.add(sphere_default);// Ajout de la sphere à la scene
 
 /* CREATION TORUS */
 
-    var torus = new THREE.TorusGeometry(8,2,32,100);
-    var tor = new THREE.Mesh(torus,materiel);
+    var torus = new THREE.TorusGeometry(8,2,100,100);
+    var materiel1 = new THREE.MeshBasicMaterial({color : 0x3f56aa, wireframe : true}); 
+    var tor = new THREE.Mesh(torus,materiel1);
     scene.add(tor);
     
 /*CREATION DE LA LUMIERE AMBIANTE */
@@ -90,5 +92,6 @@ l'axe y en rouge et enfin l'axe z en vert*/
 function anim(){
       
    tor.rotation.y+=0.02; //on  fait tournée x de 0.01 a chaque appel de la fonction
+   sphere_default.rotation.y+=0.002;
   
 }
