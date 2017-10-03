@@ -16,7 +16,9 @@ var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight
 
 /* CREATION DU RENDU */
 
-var renderer = new THREE.WebGLRenderer();
+var renderer = new THREE.WebGLRenderer({ alpha: true });
+
+renderer.setClearColor( 0xffffff, 0);
 
     /*@function setSize()
      * 1rst @param largeur du rendu de type @int
@@ -48,7 +50,7 @@ camera.lookAt(scene.position);  // On indique à la camera de regarder la scene 
     /* CREATION DU MATERIEL DE LA SPHERE */
 
 
-        var materiel = new THREE.MeshBasicMaterial({color : 0xffffff, wireframe : true}); 
+        var materiel = new THREE.MeshBasicMaterial({color : 0x5AA85E, wireframe : true}); 
         var sphere_default = new THREE.Mesh(forme,materiel); // Création de l'objet sphere avec deux param , la forme et le materiel
 
 /* AJOUT DES SPHERES A LA SCENE */
