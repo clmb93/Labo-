@@ -53,19 +53,16 @@ camera.lookAt(scene.position);  // On indique à la camera de regarder la scene 
     
     /* CREATION DU MATERIEL DE LA SPHERE */
         
-        /* BASIC MATERIEL */
+        /* PHONG MATERIEL */
 
-        /*@function MeshBasicMaterial()
+        /*@function MeshPhongMaterial()
          * 1rst @param prend en param la couleur sous forme hexadecimal
-         * 2snd @param prend en second param "wireframe : true ou false" pour afficher l'objet plein ou seulement les lignes
+         * 2snd @param prend en second param "shininess : true ou false" pour la brillance de l'objet à la lumière
          */
 
         var materiel = new THREE.MeshPhongMaterial({color : 0xdb1adb, shininess : 100}); //On crée le materiel de notre sphere ici un phong material , il en existe plein d'autre, shininess  = intensité de brillance , par défault = 30 
         var sphere_default = new THREE.Mesh(forme,materiel); // Création de l'objet sphere avec deux param , la forme et le materiel
         
-        /* PHONG MATERIEL */
-        
-        /* A completer plus tard */
 
 /* AJOUT DES SPHERES A LA SCENE */
 
