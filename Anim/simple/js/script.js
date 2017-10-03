@@ -60,10 +60,15 @@ scene.add(sphere_default);// Ajout de la sphere à la scene
 
 /* CREATION TORUS */
 
-    var torus = new THREE.TorusGeometry(8,2,100,100);
+    var torus = new THREE.TorusGeometry(7,1,100,100);
     var materiel1 = new THREE.MeshBasicMaterial({color : 0x3f56aa, wireframe : true}); 
     var tor = new THREE.Mesh(torus,materiel1);
     scene.add(tor);
+    
+     var torus1 = new THREE.TorusGeometry(6,1,100,100);
+    var materiel2 = new THREE.MeshBasicMaterial({color : 0xb22c7a, wireframe : true}); 
+    var tor2 = new THREE.Mesh(torus1,materiel2);
+    scene.add(tor2);
     
 /*CREATION DE LA LUMIERE AMBIANTE */
 
@@ -93,5 +98,5 @@ function anim(){
       
    tor.rotation.y+=0.02; //on  fait tournée x de 0.01 a chaque appel de la fonction
    sphere_default.rotation.y+=0.002;
-  
+  tor2.rotation.y-=0.02; //on  fait tournée x de 0.01 a chaque appel de la fonction
 }
