@@ -29,29 +29,29 @@ var renderer = new THREE.WebGLRenderer();
 
 /* CREATION DE L'AXIS */
 
-var axis = new THREE.AxisHelper(10); // On passe en paramètre la taille d'laxis voulu , ici 5
+var axis = new THREE.AxisHelper(15); // On passe en paramètre la taille d'laxis voulu , ici 5
 scene.add(axis);    // on ajoute l'axis à la scene
 
 /* ON CHANGE LA CAMERA DE POSITION  */
 
-camera.position.x = 5;  //On change la psoition de la camera sur l'axe x 
-camera.position.y = 5;  //On change la psoition de la camera sur l'axe y 
-camera.position.z = 5;  //On change la psoition de la camera sur l'axe z 
+camera.position.x = 10;  //On change la psoition de la camera sur l'axe x 
+camera.position.y = 10;  //On change la psoition de la camera sur l'axe y 
+camera.position.z = 10;  //On change la psoition de la camera sur l'axe z 
 camera.lookAt(scene.position);  // On indique à la camera de regarder la scene à la position ou elle se trouve 
 
-/* CREATION DU CUBE */
+/* CREATION DE LA SPHERE */
 
-    /* CREATION DE LA FORME DU CUBE */
+    /* CREATION DE LA FORME DE LA SPHERE */
 
-    /*@function BoxGeometry
-     * 1rst @param prend en premier param la valeur x de la boite
-     * 2nd  @param prend en second param la valeur y de la boite 
-     * 3rd  @param prend en troisième param la valeur z de la boite
+    /*@function SphereGeometry
+     * 1rst @param prend en premier param le rayon de la sphere
+     * 2nd  @param prend en second param le nombre de segment en largeur 
+     * 3rd  @param prend en troisième param le nombre de segment en hauteur
      */
 
-    var forme = new THREE.BoxGeometry(1,1,1); //Création de la forme de la boite
+    var forme = new THREE.SphereGeometry(2,32,32); //Création de la forme de la sphere
     
-    /* CREATION DU MATERIEL DU CUBE */
+    /* CREATION DU MATERIEL DE LA SPHERE */
         
         /* BASIC MATERIEL */
 
@@ -60,17 +60,26 @@ camera.lookAt(scene.position);  // On indique à la camera de regarder la scene 
          * 2snd @param prend en second param "wireframe : true ou false" pour afficher l'objet plein ou seulement les lignes
          */
 
-        var materiel = new THREE.MeshBasicMaterial({color : 0xdbfb94c, wireframe : true}); //On crée le materiel de notre boite ici un basic material , il en existe plein d'autre
-        var cube_defaut = new THREE.Mesh(forme,materiel); // Création de l'objet cube avec deux param , la forme et le materiel
+        var materiel = new THREE.MeshPhongMaterial({color : 0xdb1adb, shininess : 100}); //On crée le materiel de notre sphere ici un phong material , il en existe plein d'autre, shininess  = intensité de brillance , par défault = 30 
+        var sphere_default = new THREE.Mesh(forme,materiel); // Création de l'objet sphere avec deux param , la forme et le materiel
         
         /* PHONG MATERIEL */
         
         /* A completer plus tard */
 
-/* AJOUT DES CUBES A LA SCENE */
+/* AJOUT DES SPHERES A LA SCENE */
 
-cube_defaut.position.set(1,1,1); //On définit la position du cube (x,z,y)
-scene.add(cube_defaut);// Ajout du cube à la scene
+sphere_default.position.set(4,4,4); //On définit la position de la sphere (x,z,y)
+scene.add(sphere_default);// Ajout de la sphere à la scene
+
+/* CREATION DE LA LUMIERE AMBIANTE */
+
+var Lumiere = new   THREE.PointLight({color : 0xffffff},1,100); //Création de la lumière ambiante avec en 2eme param l'intensité de lumiere et en 3eme param la distance d'affichage de la lumière
+Lumiere.position.set(6,6,6);// on definit les coordonnées du point de lumière, ici je fait en sorte que le point de lumiere soit juste devant la boule entre nous et la boule dans le repère 3d
+    
+    /* AJOUT DE LA LUMIERE A LA SCENE */
+    
+    scene.add(Lumiere);
 
 /* AJOUT AU RENDU DE LA SCENE PLUS LA CAMERA */
 
