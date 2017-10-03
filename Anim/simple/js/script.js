@@ -17,8 +17,7 @@ var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight
 /* CREATION DU RENDU */
 
 var renderer = new THREE.WebGLRenderer({ alpha: true });
-
-renderer.setClearColor( 0xffffff, 0);
+renderer.setClearColor( 0xffffff, 0);// pour changer le backrgound de l'image par défaut en noir
 
     /*@function setSize()
      * 1rst @param largeur du rendu de type @int
