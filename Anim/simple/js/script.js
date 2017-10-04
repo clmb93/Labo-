@@ -70,6 +70,26 @@ scene.add(sphere_default);// Ajout de la sphere à la scene
     var tor2 = new THREE.Mesh(torus1,materiel2);
     scene.add(tor2);
     
+/* CREATION DU SEGMENT */ 
+
+var geometry = new THREE.Geometry();
+
+geometry.vertices.push(
+	new THREE.Vector3( 0,  -50, 0 ), //point de debut
+	new THREE.Vector3( 0, 50, 0 ) //point de fin 
+
+);
+
+var ligneMat = new THREE.LineBasicMaterial( {
+	color: 0xff0000,
+	linewidth: 20,
+} );
+    
+    var Ligne = new THREE.LineSegments(geometry,ligneMat);
+    
+    /* AJOUT DE LA LIGNE A LA SCENE */
+    
+    scene.add(Ligne);
 /*CREATION DE LA LUMIERE AMBIANTE */
 
 var Lumiere = new  THREE.SpotLight({color : 0xffffff},1,100); //Création de la lumière ambiante avec en 2eme param l'intensité de lumiere et en 3eme param la distance d'affichage de la lumière
