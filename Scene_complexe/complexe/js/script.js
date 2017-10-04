@@ -13,7 +13,6 @@ camera.lookAt(scene.position);  // On indique à la camera de regarder la scene 
 
 
  var axe = new THREE.AxisHelper(10);
- //scene.add(axe);
 
 
 /* forme plato */
@@ -77,8 +76,13 @@ function anim(){
          boule.rotation.z-=0.02;
     }
    
-   
-    
+  document.body.addEventListener('click',function(){
+      scene.add(axe);
+  });
+  
+  document.body.addEventListener('dblclick',function(){
+      scene.remove(axe);
+  });
    
 }
 
