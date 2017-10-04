@@ -44,69 +44,38 @@ camera.lookAt(scene.position);  // On indique à la camera de regarder la scene 
      */
 
     var forme = new THREE.SphereGeometry(4,32,32); //Création de la forme de la sphere
+    var sphere_lune = new THREE.SphereGeometry(0.7,32,32); //Création de la forme de la sphere
         /* CREATION DE LA TEXTURE DE LA PSHERE */
     
-     var texture = new THREE.TextureLoader().load('img/texture_terre.jpg'); //on load l'image
+     var texture_terre = new THREE.TextureLoader().load('img/texture_terre.jpg'); //on load l'image
+     var texture_lune = new THREE.TextureLoader().load('img/texture_lune.jpg'); //on load l'image
      
     /* CREATION DU MATERIEL DE LA SPHERE */
 
 
-        var materiel = new THREE.MeshBasicMaterial({map : texture}); 
+        var materiel_terre = new THREE.MeshPhongMaterial({map : texture_terre}); 
+        var materiel_lune = new THREE.MeshPhongMaterial({map : texture_lune}); 
         
-        var sphere_default = new THREE.Mesh(forme,materiel); // Création de l'objet sphere avec deux param , la forme et le materiel
-
+        var sphere_default = new THREE.Mesh(forme,materiel_terre); // Création de l'objet sphere avec deux param , la forme et le materiel
+        var lune = new THREE.Mesh(sphere_lune,materiel_lune); // Création de l'objet sphere avec deux param , la forme et le materiel
+        
+        
 
      
 /* AJOUT DES SPHERES A LA SCENE */
 
 sphere_default.position.set(0,0,0); //On définit la position de la sphere (x,z,y)
+sphere_default.add(lune);
+lune.position.set(9.3,9.3,9.3);
+
 scene.add(sphere_default);// Ajout de la sphere à la scene
+sphere_default.rotation.y-=0.5;
 
-/* CREATION TORUS */
-
-    var torus = new THREE.TorusGeometry(7.5,1,100,100);
-    var materiel1 = new THREE.MeshBasicMaterial({color : 0x3f56aa, wireframe : true}); 
-    var tor = new THREE.Mesh(torus,materiel1);
-    scene.add(tor);
-    
-     var torus1 = new THREE.TorusGeometry(6,1,100,100);
-    var materiel2 = new THREE.MeshBasicMaterial({color : 0xb22c7a, wireframe : true}); 
-    var tor2 = new THREE.Mesh(torus1,materiel2);
-    scene.add(tor2);
-    
-/* CREATION DU SEGMENT */ 
-
-var geometry = new THREE.Geometry();
-
-geometry.vertices.push(
-	new THREE.Vector3( 0,  -50, 0 ), //point de debut
-	new THREE.Vector3( 0, 50, 0 ) //point de fin 
-
-);
-
-var geometry2 = new THREE.Geometry();
-
-geometry.vertices.push(
-	new THREE.Vector3( 0,  -50, 0 ), //point de debut
-	new THREE.Vector3( 0, 50, 0 ) //point de fin 
-
-);
-
-var ligneMat = new THREE.LineBasicMaterial( { //materiel d'une ligne 
-	color: 0xff0000,
-	linewidth: 1,
-} );
-    
-    var Ligne = new THREE.LineSegments(geometry,ligneMat); //creation objet ligne 
-    
-    /* AJOUT DE LA LIGNE A LA SCENE */
-    
-    scene.add(Ligne);
     
 /*CREATION DE LA LUMIERE AMBIANTE */
 
-var Lumiere = new  THREE.SpotLight({color : 0xffffff},1,100); //Création de la lumière ambiante avec en 2eme param l'intensité de lumiere et en 3eme param la distance d'affichage de la lumière
-Lumiere.position.set(4,10,4);// on definit les coordonnées du point de lumière, ici je fait en sorte que le point de lumiere soit juste au dessus de la boule
+var Lumiere = new  THREE.SpotLight({color : 0xffffff},3,100); //Création de la lumière ambiante avec en 2eme param l'intensité de lumiere et en 3eme param la distance d'affichage de la lumière
+Lumiere.position.set(20,10,10);// on definit les coordonnées du point de lumière, ici je fait en sorte que le point de lumiere soit juste au dessus de la boule
     
     /* AJOUT DE LA LUMIERE A LA SCENE */
     
@@ -129,7 +98,10 @@ l'axe y en rouge et enfin l'axe z en vert*/
 
 function anim(){
       
-   tor.rotation.y+=0.02; //on  fait tournée x de 0.01 a chaque appel de la fonction
-   sphere_default.rotation.y+=0.002;
-  tor2.rotation.y-=0.05; //on  fait tournée x de 0.01 a chaque appel de la fonction
+    lune.rotation.x+=0.009;  
+    sphere_default.rotation.y+=0.002;
 }
+
+
+      
+
