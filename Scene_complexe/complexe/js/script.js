@@ -71,9 +71,14 @@ render(
 
 function anim(){
     
-    if(boule.position.x<4){
+    if(boule.position.x<4.5){
          boule.position.x+=0.01;
          boule.rotation.z-=0.02;
+    }else{
+       
+        camera.position.x-=0.01;
+        camera.position.y-=0.01;
+        camera.position.z-=0.01;
     }
    
   document.body.addEventListener('click',function(){
