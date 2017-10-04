@@ -16,8 +16,7 @@ var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight
 
 /* CREATION DU RENDU */
 
-var renderer = new THREE.WebGLRenderer({ alpha: true });
-renderer.setClearColor( 0xffffff, 0);// pour changer le backrgound de l'image par défaut en noir
+var renderer = new THREE.WebGLRenderer();
 
     /*@function setSize()
      * 1rst @param largeur du rendu de type @int
@@ -45,14 +44,19 @@ camera.lookAt(scene.position);  // On indique à la camera de regarder la scene 
      */
 
     var forme = new THREE.SphereGeometry(4,32,32); //Création de la forme de la sphere
+        /* CREATION DE LA TEXTURE DE LA PSHERE */
     
+     var texture = new THREE.TextureLoader().load('img/texture_terre.jpg'); //on load l'image
+     
     /* CREATION DU MATERIEL DE LA SPHERE */
 
 
-        var materiel = new THREE.MeshBasicMaterial({color : 0x5AA85E, wireframe : true}); 
+        var materiel = new THREE.MeshBasicMaterial({map : texture}); 
         
         var sphere_default = new THREE.Mesh(forme,materiel); // Création de l'objet sphere avec deux param , la forme et le materiel
 
+
+     
 /* AJOUT DES SPHERES A LA SCENE */
 
 sphere_default.position.set(0,0,0); //On définit la position de la sphere (x,z,y)
